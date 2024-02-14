@@ -66,4 +66,13 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    //Navegació
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+    //Biblioteca extesa d'icones
+    implementation ("androidx.compose.material:material:1.6.1")
+    //DataStore
+    implementation ("androidx.datastore:datastore-preferences:1.0.0")
+    //Lifecycle
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 }
