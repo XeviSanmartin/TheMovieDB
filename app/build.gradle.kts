@@ -75,4 +75,28 @@ dependencies {
     implementation ("androidx.datastore:datastore-preferences:1.0.0")
     //Lifecycle
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+
+    //Retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+
+    //Scalar converter de Retrofit
+    implementation ("com.squareup.retrofit2:converter-scalars:2.9.0")
+
+    //Gson converter de Retrofit
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+
+    //Convertidors moshi de retrofit
+    implementation ("com.squareup.moshi:moshi:1.11.0")
+    implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
+
+    implementation ("com.squareup.okhttp3:logging-interceptor:4.10.0")
+
+
+    //Coil  (Per a carregar imatges d'internet
+    implementation ("io.coil-kt:coil-compose:2.5.0")
+
+    //Constraint layout per a Compose
+    implementation ("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+
 }

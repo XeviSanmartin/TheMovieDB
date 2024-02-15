@@ -7,10 +7,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import cat.institutmontivi.themoviedb.ui.pantalles.Instruccions
-import cat.institutmontivi.themoviedb.ui.pantalles.PantallaA
-import cat.institutmontivi.themoviedb.ui.pantalles.PantallaB
 import cat.institutmontivi.themoviedb.ui.pantalles.PantallaC1
 import cat.institutmontivi.themoviedb.ui.pantalles.PantallaC2
+import cat.institutmontivi.themoviedb.ui.pantalles.PelisPopularsString
+import cat.institutmontivi.themoviedb.ui.pantalles.PelisPopularsStringFlow
 import cat.institutmontivi.themoviedb.ui.pantalles.Portada
 import cat.institutmontivi.themoviedb.ui.pantalles.Preferencies
 import cat.institutmontivi.themoviedb.ui.pantalles.QuantA
@@ -46,16 +46,16 @@ fun GrafDeNavegacio (controladorDeNavegacio: NavHostController = rememberNavCont
                 QuantA()
             }
         }
-        navigation(startDestination = Destinacio.PantallaA.rutaBase,route =CategoriaDeNavegacio.PantallaA.rutaPrevia)
+        navigation(startDestination = Destinacio.PelisPopularsString.rutaBase,route =CategoriaDeNavegacio.PelisPopularsString.rutaPrevia)
         {
-            composable(route = Destinacio.PantallaA.rutaGenerica){
-                PantallaA()
+            composable(route = Destinacio.PelisPopularsString.rutaGenerica){
+                PelisPopularsString()
             }
         }
-        navigation(startDestination = Destinacio.PantallaB.rutaBase,route =CategoriaDeNavegacio.PantallaB.rutaPrevia)
+        navigation(startDestination = Destinacio.PelisPopularsStringFlow.rutaBase,route =CategoriaDeNavegacio.PelisPopularsStringFlow.rutaPrevia)
         {
-            composable(route = Destinacio.PantallaB.rutaGenerica){
-                PantallaB()
+            composable(route = Destinacio.PelisPopularsStringFlow.rutaGenerica){
+                PelisPopularsStringFlow()
             }
         }
         navigation(startDestination = Destinacio.PantallaC1.rutaBase,route =CategoriaDeNavegacio.PantallaC1.rutaPrevia)

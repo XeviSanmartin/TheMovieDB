@@ -34,6 +34,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -53,8 +54,8 @@ val pantallesAmbDrawer =listOf(
     Destinacio.Instruccions.rutaGenerica,
     Destinacio.Preferencies.rutaGenerica,
     Destinacio.QuantA.rutaGenerica,
-    Destinacio.PantallaA.rutaGenerica,
-    Destinacio.PantallaB.rutaGenerica,
+    Destinacio.PelisPopularsString.rutaGenerica,
+    Destinacio.PelisPopularsStringFlow.rutaGenerica,
     Destinacio.PantallaC1.rutaGenerica)
 
 val pantallesSenseDrawer =listOf(
@@ -102,7 +103,7 @@ fun Bastida(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Decissor") },
+                title = { Text(stringResource(R.string.app_name)) },
 
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primary,

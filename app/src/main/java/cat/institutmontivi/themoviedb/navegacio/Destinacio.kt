@@ -19,8 +19,8 @@ enum class CategoriaDeNavegacio(
     val titol: String
 ){
     Portada ("Portada", Icons.Default.Home, "Portada"),
-    PantallaA("PantallaA", Icons.Default.AddCircle,"PantallaA"),
-    PantallaB("PantallaB", Icons.Default.Create,"PantallaB"),
+    PelisPopularsString("PelisPopularsString", Icons.Default.AddCircle,"PelisPopularsString"),
+    PelisPopularsStringFlow("PelisPopularsStringFlow", Icons.Default.Create,"PelisPopularsStringFlow"),
     PantallaC1("PantallaC1", Icons.Default.Face,"PantallaC1"),
     Preferencies ("Preferencies", Icons.Default.Build, "Preferencies"),
     Instruccions ("Instruccions", Icons.Default.Info, "Instruccions"),
@@ -48,8 +48,8 @@ sealed class Destinacio(
     object Preferencies: Destinacio(CategoriaDeNavegacio.Preferencies.rutaPrevia+"/Inici")
     object Instruccions: Destinacio(CategoriaDeNavegacio.Instruccions.rutaPrevia+"/Inici")
     object QuantA: Destinacio(CategoriaDeNavegacio.QuantA.rutaPrevia+"/Inici")
-    object PantallaA:Destinacio(CategoriaDeNavegacio.PantallaA.rutaPrevia+"/Inici")
-    object PantallaB:Destinacio(CategoriaDeNavegacio.PantallaB.rutaPrevia+"/Inici")
+    object PelisPopularsString:Destinacio(CategoriaDeNavegacio.PelisPopularsString.rutaPrevia+"/Inici")
+    object PelisPopularsStringFlow:Destinacio(CategoriaDeNavegacio.PelisPopularsStringFlow.rutaPrevia+"/Inici")
     object PantallaC1:Destinacio(CategoriaDeNavegacio.PantallaC1.rutaPrevia+"/Inici")
     object PantallaC2:Destinacio(CategoriaDeNavegacio.PantallaC1.rutaPrevia+"/Segona",listOf(ArgumentDeNavegacio.IdArg4)) {
         fun CreaRutaAmbArguments(idArg4: String) = if (idArg4.isNullOrEmpty()) "$rutaBase/ " else "$rutaBase/$idArg4"
