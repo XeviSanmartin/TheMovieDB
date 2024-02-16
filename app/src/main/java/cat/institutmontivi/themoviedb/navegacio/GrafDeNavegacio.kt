@@ -7,8 +7,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import cat.institutmontivi.themoviedb.ui.pantalles.Instruccions
-import cat.institutmontivi.themoviedb.ui.pantalles.PantallaC1
-import cat.institutmontivi.themoviedb.ui.pantalles.PantallaC2
+import cat.institutmontivi.themoviedb.ui.pantalles.LlistaActors
+import cat.institutmontivi.themoviedb.ui.pantalles.PelisPopulars
 import cat.institutmontivi.themoviedb.ui.pantalles.PelisPopularsString
 import cat.institutmontivi.themoviedb.ui.pantalles.PelisPopularsStringFlow
 import cat.institutmontivi.themoviedb.ui.pantalles.Portada
@@ -58,15 +58,15 @@ fun GrafDeNavegacio (controladorDeNavegacio: NavHostController = rememberNavCont
                 PelisPopularsStringFlow()
             }
         }
-        navigation(startDestination = Destinacio.PantallaC1.rutaBase,route =CategoriaDeNavegacio.PantallaC1.rutaPrevia)
+        navigation(startDestination = Destinacio.PelisPopulars.rutaBase,route =CategoriaDeNavegacio.PelisPopulars.rutaPrevia)
         {
-            composable(route = Destinacio.PantallaC1.rutaGenerica){
-                PantallaC1(onClick = {arg1:String -> controladorDeNavegacio.navigate(Destinacio.PantallaC2.CreaRutaAmbArguments(arg1))})
+            composable(route = Destinacio.PelisPopulars.rutaGenerica){
+                PelisPopulars(onClic = {arg1:Int -> controladorDeNavegacio.navigate(Destinacio.LlistaActors.CreaRutaAmbArguments(arg1))})
             }
-            composable (route = Destinacio.PantallaC2.rutaGenerica, arguments = Destinacio.PantallaC2.navArgs){
-                val argument1 = it.arguments?.getString(ArgumentDeNavegacio.IdArg4.clau) ?: ""
+            composable (route = Destinacio.LlistaActors.rutaGenerica, arguments = Destinacio.LlistaActors.navArgs){
+                val argument1 = it.arguments?.getInt(ArgumentDeNavegacio.IdPeli.clau) ?: 1
                 requireNotNull(argument1)
-                PantallaC2(argument1)
+                LlistaActors(argument1)
             }
         }
     }

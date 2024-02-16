@@ -2,9 +2,10 @@ package cat.institutmontivi.themoviedb.ui.pantalles
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,8 +14,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
@@ -24,57 +27,57 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import cat.institutmontivi.themoviedb.ui.pantalles.comu.Carregant
-
+import cat.institutmontivi.themoviedb.dades.xarxa.theMovieDBClient
+import coil.compose.AsyncImage
 
 @Preview
 @Composable
-fun PelisPopularsStringFlow (viewModel: PelisPopularsStringFlowViewModel = androidx.lifecycle.viewmodel.compose.viewModel())
+fun PelisPopulars (viewModel: PelisPopularsViewModel = androidx.lifecycle.viewmodel.compose.viewModel(), onClic: (Int)->Unit = {})
 {
     val estat = viewModel.estat.collectAsState()
     Column (
         Modifier
+            .background(MaterialTheme.colorScheme.secondary)
             .padding(8.dp)
             .fillMaxSize()
-    ) {
-
-
-        PaginadorStringFlow(estat, viewModel)
+    ){
+        PaginadorPelisPopulars(estat = estat , viewModel = viewModel )
         Spacer(modifier = Modifier.height(8.dp))
-        Box(
-            Modifier
-                .fillMaxSize()
-                .background(color = MaterialTheme.colorScheme.surfaceVariant)
-        )
-        {
-            if (estat.value.estaCarregant) {
-                Carregant(estat.value.missatge)
-            } else {
-                Text(
-                    text = estat.value.stringJson,
-                    modifier = Modifier
-                        .align(Alignment.Center)
-                        .verticalScroll(rememberScrollState()),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    textAlign = TextAlign.Center
-                )
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+
+            contentPadding = PaddingValues(4.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+
+
+            ){
+            items(estat.value.pelis)
+            {peli ->
+
+                ElementDePelicula(imageUrl = peli.posterPath,
+                    titol = peli.title,
+                    id= peli.id,
+                    Modifier
+                ) {
+                    onClic(peli.id)
+                }
+
             }
         }
     }
 }
 
-
 @Composable
-fun PaginadorStringFlow(
-    estat: State<PelisPopularsStringFlowViewModel.PelisPopularsStringFlowEstat>,
-    viewModel: PelisPopularsStringFlowViewModel
+fun PaginadorPelisPopulars(
+    estat: State<PelisPopularsEstat>,
+    viewModel: PelisPopularsViewModel
 ) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -113,4 +116,39 @@ fun PaginadorStringFlow(
             Spacer(modifier = Modifier.width(32.dp))
         }
     }
+}
+@Composable
+fun ElementDePelicula(
+    imageUrl: String,
+    titol: String,
+    id:Int,
+    modifier: Modifier = Modifier,
+    onclick: (Int) -> Unit ={}
+) {
+    Column(
+        modifier = Modifier
+            .wrapContentHeight()
+            .padding(all = 4.dp)
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null){onclick(id)} ,
+        horizontalAlignment = Alignment.Start
+    ) {
+        AsyncImage(
+            model = theMovieDBClient.BASE_URL_IMG+imageUrl,
+            contentDescription = "caca"
+        )
+        Text(text = retallaText(titol, 20),
+            color = MaterialTheme.colorScheme.onSecondary,
+            fontSize = 16.sp,
+            modifier = Modifier.fillMaxWidth(),
+            textAlign = TextAlign.Center
+        )
+
+    }
+}
+
+private fun retallaText(text: String, mida: Int) = if (text.length <= mida) text else {
+    val textAmbEllipsis = text.removeRange(startIndex = mida, endIndex = text.length)
+    "$textAmbEllipsis..."
 }

@@ -17,8 +17,8 @@ object theMovieDBClient {
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(BASE_URL)
-        .addConverterFactory(ScalarsConverterFactory.create())
-        //.addConverterFactory(GsonConverterFactory.create(gson))
+        //.addConverterFactory(ScalarsConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create(gson))
         .build()
 
     val servei = retrofit.create(TheMovieDBService::class.java)

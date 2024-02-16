@@ -56,10 +56,10 @@ val pantallesAmbDrawer =listOf(
     Destinacio.QuantA.rutaGenerica,
     Destinacio.PelisPopularsString.rutaGenerica,
     Destinacio.PelisPopularsStringFlow.rutaGenerica,
-    Destinacio.PantallaC1.rutaGenerica)
+    Destinacio.PelisPopulars.rutaGenerica)
 
 val pantallesSenseDrawer =listOf(
-    Destinacio.PantallaC2.rutaGenerica)
+    Destinacio.LlistaActors.rutaGenerica)
 
 @Composable
 fun PantallaDeLAplicacio (content: @Composable ()->Unit)
@@ -78,7 +78,7 @@ fun PantallaDeLAplicacio (content: @Composable ()->Unit)
 @Preview
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Aplicacio (content: @Composable ()-> Unit = {Text ("")})
+fun Aplicacio ()
 {
     val controladorDeNavegacio = rememberNavController()
     val coroutineScope: CoroutineScope = rememberCoroutineScope()

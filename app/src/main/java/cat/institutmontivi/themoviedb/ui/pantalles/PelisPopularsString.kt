@@ -93,7 +93,7 @@ private fun PaginadorString(
             Spacer(modifier = Modifier.width(32.dp))
         }
         Text(
-            text = "Plana ${estat.plana} de ${estat.plana}",
+            text = "Plana ${estat.plana} de ${estat.totalPlanes}",
             color = MaterialTheme.colorScheme.onSecondary,
             fontSize = 24.sp
         )

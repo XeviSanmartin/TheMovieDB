@@ -27,10 +27,10 @@ data class ApiCast(
     @SerializedName("popularity")
     val popularity: Double,
     @SerializedName("profile_path")
-    val profilePath: String
+    val profilePath: String?
 )
 
-fun ApiCast.ToCast() = Cast(
+fun ApiCast.toCast() = Cast(
     adult=adult,
     castId = castId,
     character = character,
@@ -39,5 +39,5 @@ fun ApiCast.ToCast() = Cast(
     id = id,
     knownForDepartment = knownForDepartment,
     name = name,
-    profilePath = profilePath
+    profilePath = (profilePath ?: "")
 )

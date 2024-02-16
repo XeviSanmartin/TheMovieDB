@@ -33,7 +33,7 @@ data class ApiPelisPopulars(
     @SerializedName("vote_count")
     val voteCount: Int
 )
-fun ApiPelisPopulars.ToPelicula(): Pelicula = Pelicula (
+fun ApiPelisPopulars.toPelicula(): Pelicula = Pelicula (
     adult = adult,
     genreIds = genreIds,
     id  = id,
